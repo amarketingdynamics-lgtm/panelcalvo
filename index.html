@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBBsMX7SYxaqGCKjooTM-C48hGYby8JZ8o",
+  apiKey: "AIzaSyBBsMX7SYxaqGCKjooTM-C48hGYby8JZ8o,
   authDomain: "calvopanel.firebaseapp.com",
-  projectId: "calvopanel",
-  storageBucket: "calvopanel.firebasestorage.app",
-  messagingSenderId: "323871975612",
-  appId: "1:323871975612:web:9aff96ffc94eba8a2c48b9"
+  projectId: "calvopanel"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.db = db;
+</script>
+
+<script type="module">
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+async function guardar(texto) {
+  await addDoc(collection(db, "datos"), {
+    texto: texto
+  });
+}
+
+window.guardar = guardar;
+</script>
 
 <html lang="es">
 <head>
@@ -62,6 +75,11 @@ body {
   font-weight: 400;
   overflow-x: hidden;
 }
+
+  <input id="txt">
+<button onclick="guardar(document.getElementById('txt').value)">
+  Guardar
+</button>
 
 /* ═══════════════════════════════════════════════
    SCROLLBAR
