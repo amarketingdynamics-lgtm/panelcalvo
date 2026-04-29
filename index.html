@@ -1,6 +1,13 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Interno · Joyería Calvo</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
 
-<script type="module">
+  <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
@@ -28,13 +35,10 @@ async function guardar(texto) {
 window.guardar = guardar;
 </script>
 
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Interno · Joyería Calvo</title>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+ <input id="txt">
+<button onclick="guardar(document.getElementById('txt').value)">
+  Guardar
+</button>
 /* ═══════════════════════════════════════════════
    VARIABLES — COLORES REALES DE JOYERIACALVO.COM
    ═══════════════════════════════════════════════ */
@@ -72,11 +76,6 @@ body {
   font-weight: 400;
   overflow-x: hidden;
 }
-
-  <input id="txt">
-<button onclick="guardar(document.getElementById('txt').value)">
-  Guardar
-</button>
 
 /* ═══════════════════════════════════════════════
    SCROLLBAR
