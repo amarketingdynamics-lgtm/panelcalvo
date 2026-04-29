@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Interno · Joyería Calvo</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   VARIABLES — COLORES REALES DE JOYERIACALVO.COM
+   ═══════════════════════════════════════════════ */
+:root {
+  --navy:       #141f34;
+  --navy-mid:   #1b2a46;
+  --blue:       #295bb8;
+  --blue-lt:    #3a72d4;
+  --blue-pale:  rgba(41,91,184,0.08);
+  --white:      #ffffff;
+  --bg:         #f5f7fc;
+  --bg-card:    #ffffff;
+  --cream:      #f4ede4;
+  --border:     #dde2ee;
+  --border-mid: #c8d0e0;
+  --text:       #141f34;
+  --text-mid:   #4a5568;
+  --text-soft:  #8a93a8;
+  --success:    #1a7a4a;
+  --danger:     #be1414;
+  --shadow-sm:  0 1px 6px rgba(20,31,52,0.08);
+  --shadow-md:  0 4px 24px rgba(20,31,52,0.12);
+  --shadow-lg:  0 12px 48px rgba(20,31,52,0.18);
+  --t:          0.2s ease;
+  --r:          6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ═══════════════════════════════════════════════
+   LOGIN SCREEN
+   ═══════════════════════════════════════════════ */
+#loginScreen {
+  position: fixed; inset: 0;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.login-box {
+  background: var(--white);
+  width: 100%; max-width: 420px;
+  border-top: 4px solid var(--blue);
+  box-shadow: var(--shadow-lg);
+  padding: 2.8rem 2.4rem 2.4rem;
+  animation: loginIn 0.4s ease;
+}
+
+@keyframes loginIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-logo {
+  font-family: 'IM Fell English', serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.18em;
+  color: var(--navy);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+}
+
+.login-logo span { color: var(--blue); }
+
+.login-sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-align: center;
+  margin-bottom: 2.2rem;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.login-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  outline: none;
+  border-radius: var(--r);
+  transition: border-color var(--t), box-shadow var(--t);
+  margin-bottom: 1.1rem;
+}
+
+.login-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+}
+
+.login-btn {
+  width: 100%;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  padding: 0.9rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--r);
+  transition: background var(--t);
+  margin-top: 0.4rem;
+}
+.login-btn:hover { background: var(--blue); }
+
+.login-forgot {
+  text-align: center;
+  margin-top: 1.2rem;
+}
+.login-forgot button {
+  background: none;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  color: var(--blue);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.login-error {
+  background: rgba(190,20,20,0.08);
+  border: 1px solid rgba(190,20,20,0.25);
+  color: var(--danger);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.76rem;
+  border-radius: var(--r);
+  margin-bottom: 1rem;
+  display: none;
+  font-weight: 600;
+}
+
+.login-info {
+  background: var(--blue-pale);
+  border: 1px solid rgba(41,91,184,0.2);
+  color: var(--blue);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.73rem;
+  border-radius: var(--r);
+  margin-top: 1rem;
+  display: none;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════
+   MAIN APP
+   ═══════════════════════════════════════════════ */
+#app { display: none; min-height: 100vh; flex-direction: column; }
+#app.visible { display: flex; }
+
+/* ── TOP STRIP ── */
+.top-strip {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  padding: 7px;
+  font-weight: 500;
+  display: none;
+}
+@media (min-width: 768px) { .top-strip { display: block; } }
+
+/* ── HEADER ── */
+.app-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-logo {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.5rem;
+  color: var(--navy);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.header-logo span { color: var(--blue); }
+.header-logo-sub {
+  font-size: 0.52rem;
+  letter-spacing: 0.28em;
+  color: var(--text-soft);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+  display: none;
+}
+@media (min-width: 600px) { .header-logo-sub { display: block; } }
+
+.header-right {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+
+.user-badge {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 40px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.06em;
+}
+.user-badge-dot {
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+.btn-logout {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: var(--r);
+  transition: all var(--t);
+}
+.btn-logout:hover { border-color: var(--danger); color: var(--danger); }
+
+/* ── TABS NAV ── */
+.tabs-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-soft);
+  padding: 0 1.4rem;
+  height: 48px;
+  cursor: pointer;
+  transition: all var(--t);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 7px;
+}
+.tab-btn:hover { color: var(--blue); }
+.tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab-icon { font-size: 1rem; }
+
+/* ── TAB PANELS ── */
+.tab-panel { display: none; padding: 2rem; flex: 1; }
+.tab-panel.active { display: block; }
+
+/* ═══════════════════════════════════════════════
+   ACCESOS RÁPIDOS
+   ═══════════════════════════════════════════════ */
+
+/* Search + Controls Bar */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1; min-width: 200px;
+}
+
+.search-icon {
+  position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem 0.7rem 2.4rem;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text);
+  outline: none;
+  border-radius: var(--r);
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.search-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+}
+
+.filter-select {
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  outline: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: border-color var(--t);
+}
+.filter-select:focus { border-color: var(--blue); }
+
+.btn-action {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border-radius: var(--r);
+  transition: background var(--t);
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+}
+.btn-action:hover { background: var(--blue); }
+.btn-action.secondary {
+  background: var(--white);
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+}
+.btn-action.secondary:hover { border-color: var(--blue); color: var(--blue); background: var(--white); }
+
+/* Category section */
+.cat-section { margin-bottom: 2.8rem; }
+
+.cat-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 2px solid var(--navy);
+  position: relative;
+}
+.cat-header-row::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 50px; height: 2px;
+  background: var(--blue);
+}
+
+.cat-section-name {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.05rem;
+  color: var(--navy);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cat-section-actions {
+  display: flex; gap: 6px;
+}
+
+.cat-edit-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  font-size: 0.65rem;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: var(--r);
+  transition: all var(--t);
+}
+.cat-edit-btn:hover { border-color: var(--blue); color: var(--blue); }
+.cat-edit-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+/* Cards grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 10px;
+}
+
+/* Card */
+.card-item {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.2rem 1.1rem 1rem;
+  display: flex; flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all var(--t);
+  position: relative;
+  overflow: hidden;
+  min-height: 108px;
+  user-select: none;
+}
+
+.card-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+.card-item:hover {
+  border-color: rgba(41,91,184,0.3);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.card-item:hover::before { transform: scaleX(1); }
+
+/* Drag states */
+.card-item.dragging {
+  opacity: 0.4;
+  transform: scale(0.96);
+}
+.card-item.drag-over {
+  border-color: var(--blue);
+  border-style: dashed;
+  background: var(--blue-pale);
+}
+
+.card-icon-line {
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.card-icon { font-size: 1.3rem; line-height: 1; }
+
+.card-actions-hover {
+  display: flex; gap: 3px;
+  opacity: 0;
+  transition: opacity var(--t);
+}
+.card-item:hover .card-actions-hover { opacity: 1; }
+
+.card-mini-btn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 24px; height: 24px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--t);
+  color: var(--text-soft);
+}
+.card-mini-btn:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+.card-mini-btn.del:hover { background: var(--danger); border-color: var(--danger); }
+
+.card-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.35;
+}
+
+.card-badge {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-top: auto;
+  padding-top: 0.4rem;
+  display: flex; align-items: center; gap: 5px;
+}
+.card-badge::before {
+  content: '';
+  display: block; width: 12px; height: 1.5px;
+  background: var(--blue); opacity: 0.4;
+}
+
+.card-drag-handle {
+  position: absolute; bottom: 6px; right: 8px;
+  font-size: 0.65rem; color: var(--border-mid);
+  cursor: grab;
+  transition: color var(--t);
+}
+.card-item:hover .card-drag-handle { color: var(--text-soft); }
+
+/* Empty state */
+.empty-cat {
+  border: 2px dashed var(--border);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════
+   CALENDAR
+   ═══════════════════════════════════════════════ */
+.calendar-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) {
+  .calendar-wrap { grid-template-columns: 360px 1fr; }
+}
+
+.calendar-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.cal-header {
+  background: var(--navy);
+  padding: 1rem 1.2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cal-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  letter-spacing: 0.08em;
+}
+.cal-nav-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  width: 30px; height: 30px;
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all var(--t);
+  display: flex; align-items: center; justify-content: center;
+}
+.cal-nav-btn:hover { background: var(--blue); border-color: var(--blue); }
+
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  background: rgba(41,91,184,0.06);
+  border-bottom: 1px solid var(--border);
+}
+.cal-wd {
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-soft);
+  padding: 8px 0;
+}
+
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: 0.5rem;
+  gap: 3px;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--t);
+  position: relative;
+  min-width: 0;
+}
+.cal-day:hover { background: var(--blue-pale); }
+.cal-day.other-month { color: var(--border-mid); cursor: default; }
+.cal-day.other-month:hover { background: none; }
+.cal-day.today {
+  background: var(--blue-pale);
+  color: var(--blue);
+  font-weight: 700;
+}
+.cal-day.selected {
+  background: var(--blue);
+  color: var(--white);
+}
+.cal-day.has-note::after {
+  content: '';
+  position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.cal-day.selected.has-note::after { background: rgba(255,255,255,0.7); }
+
+/* Notes panel */
+.notes-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+.notes-header {
+  background: var(--navy);
+  padding: 1rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.notes-date-label {
+  font-family: 'IM Fell English', serif;
+  font-size: 1rem;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+.notes-date-label small {
+  display: block;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+.notes-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 0.8rem; }
+
+.notes-textarea {
+  width: 100%;
+  min-height: 160px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.9rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--t), box-shadow var(--t);
+  line-height: 1.7;
+  background: var(--bg);
+}
+.notes-textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+}
+
+.notes-save-btn {
+  align-self: flex-end;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  border-radius: var(--r);
+  transition: background var(--t);
+}
+.notes-save-btn:hover { background: var(--blue); }
+
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+}
+.note-entry {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.8rem;
+  margin-bottom: 0.6rem;
+  display: flex; align-items: flex-start; gap: 0.6rem;
+}
+.note-text {
+  flex: 1;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--text-mid);
+  word-break: break-word;
+}
+.note-del {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--border-mid);
+  font-size: 0.85rem;
+  transition: color var(--t);
+  flex-shrink: 0;
+  padding: 2px 4px;
+}
+.note-del:hover { color: var(--danger); }
+
+.no-notes {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  font-style: italic;
+  font-family: 'IM Fell English', serif;
+}
+
+/* ═══════════════════════════════════════════════
+   TO-DO LIST
+   ═══════════════════════════════════════════════ */
+.todo-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.todo-header-box {
+  background: var(--navy);
+  border-radius: var(--r);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.todo-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.3rem;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+.todo-stats {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.todo-stats strong { color: var(--white); font-weight: 700; }
+
+.todo-add-row {
+  display: flex; gap: 0.7rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+.todo-input {
+  flex: 1; min-width: 180px;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  background: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.todo-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+}
+.todo-priority {
+  padding: 0.8rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  background: var(--white);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+}
+
+.todo-filters {
+  display: flex; gap: 6px;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+.todo-filter-btn {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--text-soft);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 14px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: all var(--t);
+}
+.todo-filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+.todo-filter-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.todo-list {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.todo-item {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.9rem 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  transition: all var(--t);
+  animation: todoIn 0.25s ease;
+}
+@keyframes todoIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.todo-item:hover { border-color: var(--border-mid); box-shadow: var(--shadow-sm); }
+.todo-item.completed { background: rgba(26,122,74,0.04); border-color: rgba(26,122,74,0.2); }
+.todo-item.priority-high { border-left: 3px solid #e53e3e; }
+.todo-item.priority-medium { border-left: 3px solid #e67e22; }
+.todo-item.priority-low { border-left: 3px solid #22c55e; }
+
+.todo-check {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border-mid);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--t);
+  background: var(--white);
+}
+.todo-check:hover { border-color: var(--blue); }
+.todo-check.checked {
+  background: var(--success);
+  border-color: var(--success);
+  color: var(--white);
+  font-size: 0.7rem;
+}
+
+.todo-text-wrap { flex: 1; min-width: 0; }
+.todo-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-word;
+  transition: all var(--t);
+}
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--text-soft);
+}
+.todo-meta {
+  font-size: 0.65rem;
+  color: var(--text-soft);
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+.todo-priority-badge {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 40px;
+  flex-shrink: 0;
+}
+.priority-high .todo-priority-badge { background: rgba(229,62,62,0.1); color: #e53e3e; }
+.priority-medium .todo-priority-badge { background: rgba(230,126,34,0.1); color: #e67e22; }
+.priority-low .todo-priority-badge { background: rgba(34,197,94,0.1); color: #15803d; }
+
+.todo-del-btn {
+  background: none; border: none;
+  cursor: pointer; color: var(--border-mid);
+  font-size: 0.9rem;
+  transition: color var(--t);
+  flex-shrink: 0;
+  padding: 2px 6px;
+}
+.todo-del-btn:hover { color: var(--danger); }
+
+.todo-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-soft);
+}
+.todo-empty-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+.todo-empty p { font-size: 0.88rem; font-style: italic; font-family: 'IM Fell English', serif; }
+
+/* ═══════════════════════════════════════════════
+   MODALS (shared)
+   ═══════════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(20,31,52,0.6);
+  backdrop-filter: blur(6px);
+  z-index: 800;
+  align-items: center; justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--white);
+  max-width: 480px; width: 100%;
+  border-radius: var(--r);
+  border-top: 3px solid var(--blue);
+  box-shadow: var(--shadow-lg);
+  animation: mIn 0.25s ease;
+}
+@keyframes mIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.modal-inner { padding: 2rem 2rem 1.8rem; }
+.modal-hd {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 1.6rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-tag {
+  font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--blue); font-weight: 700; margin-bottom: 3px;
+}
+.modal-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.35rem; color: var(--navy);
+}
+.modal-x {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-soft); font-size: 1.1rem;
+  transition: color var(--t); padding: 2px 6px;
+  border-radius: 4px;
+}
+.modal-x:hover { color: var(--danger); background: rgba(190,20,20,0.06); }
+
+.form-group { margin-bottom: 1.1rem; }
+.form-label {
+  display: block;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-soft); font-weight: 700; margin-bottom: 0.45rem;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.72rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  background: var(--bg);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+  background: var(--white);
+}
+.form-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+.icon-picker-grid {
+  display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px;
+}
+.icon-pick {
+  font-size: 1.1rem; text-align: center; padding: 6px 0;
+  border: 1.5px solid var(--border); border-radius: 4px;
+  cursor: pointer; background: var(--bg);
+  transition: all var(--t);
+}
+.icon-pick:hover { border-color: var(--blue); background: var(--blue-pale); }
+.icon-pick.sel { border-color: var(--blue); background: var(--blue-pale); }
+
+.modal-actions {
+  display: flex; gap: 0.7rem;
+  margin-top: 1.6rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+}
+.btn-cancel {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  padding: 0.72rem 1.2rem; cursor: pointer; border-radius: var(--r);
+  transition: all var(--t);
+}
+.btn-cancel:hover { border-color: var(--navy); color: var(--navy); }
+.btn-confirm {
+  background: var(--navy);
+  color: var(--white); border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  padding: 0.72rem 1.4rem; cursor: pointer; border-radius: var(--r);
+  transition: background var(--t);
+}
+.btn-confirm:hover { background: var(--blue); }
+.btn-confirm.danger { background: var(--danger); }
+.btn-confirm.danger:hover { background: #990f0f; }
+
+/* ═══════════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  background: var(--navy);
+  color: var(--white);
+  border-left: 3px solid var(--blue);
+  padding: 0.8rem 1.4rem;
+  font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--r);
+  box-shadow: var(--shadow-lg);
+  z-index: 9998;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.28s ease;
+  pointer-events: none;
+  max-width: 320px;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { border-left-color: #22c55e; }
+.toast.error { border-left-color: var(--danger); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .tab-panel { padding: 1rem; }
+  .tabs-nav { padding: 0 1rem; }
+  .app-header { padding: 0 1rem; }
+  .top-strip { display: none; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+@media (max-width: 480px) {
+  .cards-grid { grid-template-columns: 1fr 1fr; }
+  .controls-bar { gap: 0.5rem; }
+  .filter-select { width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════ */
+.hidden { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     LOGIN SCREEN
+     ═══════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">C<span>·</span>ALVO</div>
+    <div class="login-sub">Panel Interno · Acceso Restringido</div>
+
+    <div class="login-error" id="loginError">Usuario o contraseña incorrectos. Inténtalo de nuevo.</div>
+    <div class="login-info" id="loginInfo"></div>
+
+    <div id="loginForm">
+      <label class="login-label" for="loginUser">Usuario</label>
+      <input class="login-input" type="text" id="loginUser" placeholder="Introduce tu usuario" autocomplete="off" autocapitalize="characters">
+
+      <label class="login-label" for="loginPass">Contraseña</label>
+      <input class="login-input" type="password" id="loginPass" placeholder="••••••••">
+
+      <button class="login-btn" onclick="doLogin()">Acceder al Panel</button>
+
+      <div class="login-forgot">
+        <button onclick="showForgot()">¿Olvidaste tu contraseña?</button>
+      </div>
+    </div>
+
+    <div id="forgotForm" class="hidden">
+      <div class="login-info" style="display:block; margin-bottom:1rem;">
+        Para recuperar tu acceso, envía una solicitud a los administradores. Recibirás una nueva contraseña válida por 24 horas.
+      </div>
+      <button class="login-btn" onclick="sendForgot()" style="background:var(--blue)">
+        📧 Enviar solicitud de contraseña
+      </button>
+      <div class="login-forgot" style="margin-top:0.8rem">
+        <button onclick="showLoginForm()">← Volver al acceso</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN APP
+     ═══════════════════════════════════════════════ -->
+<div id="app">
+  <div class="top-strip">
+    ENVÍO NACIONAL GRATUITO · ENTREGA EN 24/48 H · DISTRIBUIDOR OFICIAL: CARTIER · OMEGA · CHAUMET · MESSIKA · IWC · JAEGER-LECOULTRE · DESDE 1962
+  </div>
+
+  <header class="app-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;flex-direction:column;">
+        <div class="header-logo">C<span>·</span>ALVO</div>
+        <div class="header-logo-sub">Alta Joyería · Panel Interno</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="user-badge">
+        <div class="user-badge-dot"></div>
+        <span id="userLabel">ARMCALVO</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('accesos')" data-tab="accesos">
+      <span class="tab-icon">🔗</span> Accesos Rápidos
+    </button>
+    <button class="tab-btn" onclick="switchTab('calendario')" data-tab="calendario">
+      <span class="tab-icon">📅</span> Calendario
+    </button>
+    <button class="tab-btn" onclick="switchTab('tareas')" data-tab="tareas">
+      <span class="tab-icon">✅</span> Tareas
+      <span id="todoCountBadge" style="background:var(--blue);color:white;font-size:0.6rem;padding:1px 6px;border-radius:40px;font-weight:700;display:none"></span>
+    </button>
+  </nav>
+
+  <!-- ── TAB: ACCESOS RÁPIDOS ── -->
+  <div class="tab-panel active" id="tab-accesos">
+    <div class="controls-bar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" type="text" id="searchInput" placeholder="Buscar acceso…" oninput="filterLinks()">
+      </div>
+      <select class="filter-select" id="filterCat" onchange="filterLinks()">
+        <option value="">Todas las categorías</option>
+      </select>
+      <button class="btn-action" onclick="openAddLinkModal()">
+        ＋ Añadir acceso
+      </button>
+      <button class="btn-action secondary" onclick="openAddCatModal()">
+        ＋ Categoría
+      </button>
+    </div>
+    <div id="linksContainer"></div>
+  </div>
+
+  <!-- ── TAB: CALENDARIO ── -->
+  <div class="tab-panel" id="tab-calendario">
+    <div class="calendar-wrap">
+      <div class="calendar-box">
+        <div class="cal-header">
+          <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+          <div class="cal-title" id="calTitle"></div>
+          <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+        </div>
+        <div class="cal-weekdays">
+          <div class="cal-wd">Lu</div><div class="cal-wd">Ma</div>
+          <div class="cal-wd">Mi</div><div class="cal-wd">Ju</div>
+          <div class="cal-wd">Vi</div><div class="cal-wd">Sá</div>
+          <div class="cal-wd">Do</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+
+      <div class="notes-panel">
+        <div class="notes-header">
+          <div class="notes-date-label">
+            <small>Notas para el día</small>
+            <span id="selectedDateLabel">Selecciona un día</span>
+          </div>
+        </div>
+        <div class="notes-body">
+          <textarea class="notes-textarea" id="noteInput" placeholder="Escribe una nota para este día…"></textarea>
+          <button class="notes-save-btn" onclick="saveNote()">Guardar nota →</button>
+          <div class="notes-list" id="notesList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: TAREAS ── -->
+  <div class="tab-panel" id="tab-tareas">
+    <div class="todo-wrap">
+      <div class="todo-header-box">
+        <div>
+          <div class="todo-title">Lista de Tareas</div>
+          <div class="todo-stats" id="todoStats">0 pendientes · 0 completadas</div>
+        </div>
+        <button class="btn-action" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.2)" onclick="clearCompleted()">
+          🗑 Limpiar completadas
+        </button>
+      </div>
+
+      <div class="todo-add-row">
+        <input class="todo-input" type="text" id="todoInput" placeholder="Nueva tarea…" onkeydown="if(event.key==='Enter') addTodo()">
+        <select class="todo-priority" id="todoPriority">
+          <option value="medium">Media</option>
+          <option value="high">Alta</option>
+          <option value="low">Baja</option>
+        </select>
+        <button class="btn-action" onclick="addTodo()">Añadir</button>
+      </div>
+
+      <div class="todo-filters">
+        <button class="todo-filter-btn active" onclick="setTodoFilter('all',this)">Todas</button>
+        <button class="todo-filter-btn" onclick="setTodoFilter('pending',this)">Pendientes</button>
+        <button class="todo-filter-btn" onclick="setTodoFilter('completed',this)">Completadas</button>
+        <button class="todo-filter-btn" onclick="setTodoFilter('high',this)">🔴 Alta prioridad</button>
+      </div>
+
+      <div class="todo-list" id="todoList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MODALS
+     ═══════════════════════════════════════════════ -->
+
+<!-- Add/Edit Link Modal -->
+<div class="modal-overlay" id="linkModal" onclick="closeLinkModalBg(event)">
+  <div class="modal-box">
+    <div class="modal-inner">
+      <div class="modal-hd">
+        <div>
+          <div class="modal-tag" id="linkModalTag">Nuevo acceso</div>
+          <div class="modal-title" id="linkModalTitle">Añadir enlace</div>
+        </div>
+        <button class="modal-x" onclick="closeLinkModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nombre del acceso</label>
+        <input class="form-input" type="text" id="lmName" placeholder="ej. Panel NetSuite, Google Analytics…">
+      </div>
+      <div class="form-group">
+        <label class="form-label">URL</label>
+        <input class="form-input" type="url" id="lmUrl" placeholder="https://…">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoría</label>
+        <select class="form-select" id="lmCategory"></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="margin-bottom:0.6rem">Ícono</label>
+        <div class="icon-picker-grid" id="iconPickerGrid"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeLinkModal()">Cancelar</button>
+        <button class="btn-confirm" id="lmConfirmBtn" onclick="saveLinkModal()">Guardar acceso</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal-overlay" id="catModal" onclick="if(event.target===this)closeCatModal()">
+  <div class="modal-box">
+    <div class="modal-inner">
+      <div class="modal-hd">
+        <div>
+          <div class="modal-tag">Organización</div>
+          <div class="modal-title" id="catModalTitle">Nueva categoría</div>
+        </div>
+        <button class="modal-x" onclick="closeCatModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nombre de la categoría</label>
+        <input class="form-input" type="text" id="cmName" placeholder="ej. Herramientas de Marketing">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción (opcional)</label>
+        <input class="form-input" type="text" id="cmDesc" placeholder="Breve descripción…">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeCatModal()">Cancelar</button>
+        <button class="btn-confirm" onclick="saveCatModal()">Crear categoría</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal" onclick="if(event.target===this)closeDeleteModal()">
+  <div class="modal-box" style="max-width:380px">
+    <div class="modal-inner">
+      <div class="modal-hd">
+        <div>
+          <div class="modal-tag">Confirmar acción</div>
+          <div class="modal-title">Eliminar acceso</div>
+        </div>
+        <button class="modal-x" onclick="closeDeleteModal()">✕</button>
+      </div>
+      <p style="font-size:0.86rem;color:var(--text-mid);line-height:1.65">
+        ¿Estás seguro de que deseas eliminar <strong id="deleteItemName"></strong>? Esta acción no se puede deshacer.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeDeleteModal()">Cancelar</button>
+        <button class="btn-confirm danger" onclick="confirmDelete()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Move Link Modal -->
+<div class="modal-overlay" id="moveModal" onclick="if(event.target===this)closeMoveModal()">
+  <div class="modal-box" style="max-width:380px">
+    <div class="modal-inner">
+      <div class="modal-hd">
+        <div>
+          <div class="modal-tag">Mover acceso</div>
+          <div class="modal-title">Cambiar categoría</div>
+        </div>
+        <button class="modal-x" onclick="closeMoveModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nueva categoría para <strong id="moveLinkName"></strong></label>
+        <select class="form-select" id="moveCatSelect"></select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeMoveModal()">Cancelar</button>
+        <button class="btn-confirm" onclick="confirmMove()">Mover</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ─────────────────────────────────────────
+   CONSTANTS
+───────────────────────────────────────── */
+const CORRECT_USER = 'ARMCALVO';
+const CORRECT_PASS = '101010';
+const SESSION_KEY  = 'jc_session';
+const DATA_KEY     = 'jc_data_v2';
+const TODO_KEY     = 'jc_todos';
+const NOTES_KEY    = 'jc_notes';
+const FORGOT_EMAILS = ['marketing@joyeriacalvo.com','info@calvojoyeros.com'];
+
+const ICONS = ['🔗','📊','📁','🛒','⚙️','📦','💰','📋','🔐','📈','🌐','🛠️','📱','🔔','📤','💼','🧾','🔎','🖥️','🎯','📌','💡','🏷️','🔑','📝','🚀'];
+
+/* ─────────────────────────────────────────
+   AUTH
+───────────────────────────────────────── */
+function checkSession() {
+  const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+  if (!s) return false;
+  const now = Date.now();
+  if (now - s.loginAt > 24 * 60 * 60 * 1000) {
+    localStorage.removeItem(SESSION_KEY);
+    return false;
+  }
+  return s.user;
+}
+
+function doLogin() {
+  const user = document.getElementById('loginUser').value.trim().toUpperCase();
+  const pass = document.getElementById('loginPass').value;
+  const err  = document.getElementById('loginError');
+
+  // Check if password was sent (forgot flow — valid for 24h)
+  const tmpPass = JSON.parse(localStorage.getItem('jc_tmppass') || 'null');
+  const validPass = pass === CORRECT_PASS || (tmpPass && pass === tmpPass.pass && Date.now() - tmpPass.at < 24*60*60*1000);
+
+  if (user === CORRECT_USER && validPass) {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({ user, loginAt: Date.now() }));
+    err.style.display = 'none';
+    startApp(user);
+  } else {
+    err.style.display = 'block';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+}
+
+function doLogout() {
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginError').style.display = 'none';
+  showLoginForm();
+}
+
+function startApp(user) {
+  document.getElementById('loginScreen').style.display = 'none';
+  const app = document.getElementById('app');
+  app.classList.add('visible');
+  document.getElementById('userLabel').textContent = user;
+  initData();
+  renderLinks();
+  initCalendar();
+  renderTodos();
+}
+
+function showForgot() {
+  document.getElementById('loginForm').classList.add('hidden');
+  document.getElementById('forgotForm').classList.remove('hidden');
+  document.getElementById('loginError').style.display = 'none';
+}
+
+function showLoginForm() {
+  document.getElementById('forgotForm').classList.add('hidden');
+  document.getElementById('loginForm').classList.remove('hidden');
+}
+
+function sendForgot() {
+  const tmpPass = '101010'; // In real app, this would be random
+  localStorage.setItem('jc_tmppass', JSON.stringify({ pass: tmpPass, at: Date.now() }));
+  const subject = encodeURIComponent('Solicitud de contraseña — Panel Joyería Calvo');
+  const body = encodeURIComponent('Estimado equipo,\n\nSolicito el restablecimiento de la contraseña de acceso al Panel Interno de Joyería Calvo para el usuario ARMCALVO.\n\nGracias.');
+  const mailto = `mailto:${FORGOT_EMAILS[0]},${FORGOT_EMAILS[1]}?subject=${subject}&body=${body}`;
+  window.open(mailto);
+  const info = document.getElementById('loginInfo');
+  info.style.display = 'block';
+  info.textContent = 'Solicitud enviada. El equipo de administración te enviará acceso. La contraseña es válida durante 24 horas.';
+  showToast('Solicitud enviada a marketing e info@calvojoyeros.com', 'success');
+}
+
+/* ─────────────────────────────────────────
+   DATA MANAGEMENT
+───────────────────────────────────────── */
+const DEFAULT_DATA = {
+  categories: [
+    { id:'shopify-transfers', name:'Traspasos Shopify', desc:'Herramientas de traspaso de productos y datos entre plataformas.', order:0 },
+    { id:'netsuite',          name:'Integración NetSuite', desc:'Importaciones y configuraciones de NetSuite.', order:1 },
+    { id:'gdrive',            name:'Google Drive', desc:'Carpetas compartidas con recursos y documentos.', order:2 },
+    { id:'shopify-products',  name:'Productos Shopify', desc:'Gestión y actualización del catálogo de productos.', order:3 },
+    { id:'shopify-admin',     name:'Administración Shopify', desc:'Pedidos, descuentos y seguimiento de órdenes.', order:4 },
+    { id:'redirections',      name:'Redirecciones URL', desc:'Gestión de redirecciones URL de la tienda.', order:5 },
+    { id:'custom',            name:'Accesos Personalizados', desc:'Accesos añadidos por el equipo.', order:6 }
+  ],
+  links: [
+    { id:'l1', catId:'shopify-transfers', name:'Traspasos Shopify',        url:'https://shopify.com',                       icon:'🛒', badge:'Shopify',   order:0 },
+    { id:'l2', catId:'netsuite',          name:'NetSuite · Primera Fase',   url:'https://netsuite.com',                      icon:'📦', badge:'Fase I',    order:0 },
+    { id:'l3', catId:'netsuite',          name:'NetSuite · Segunda Fase',   url:'https://netsuite.com',                      icon:'📦', badge:'Fase II',   order:1 },
+    { id:'l4', catId:'netsuite',          name:'Ver Novedades',             url:'https://netsuite.com',                      icon:'🔔', badge:'Novedades', order:2 },
+    { id:'l5', catId:'gdrive',            name:'Google Drive',              url:'https://drive.google.com',                  icon:'📁', badge:'Drive',     order:0 },
+    { id:'l6', catId:'gdrive',            name:'Stock eCommerce',           url:'https://drive.google.com',                  icon:'📊', badge:'Stock',     order:1 },
+    { id:'l7', catId:'gdrive',            name:'Archivos CSV Shopify',      url:'https://drive.google.com',                  icon:'📋', badge:'CSV',       order:2 },
+    { id:'l8', catId:'shopify-products',  name:'Gestionar Productos',       url:'https://admin.shopify.com/products',         icon:'📦', badge:'Productos', order:0 },
+    { id:'l9', catId:'shopify-admin',     name:'Panel de Administración',   url:'https://admin.shopify.com',                 icon:'⚙️', badge:'Admin',     order:0 },
+    { id:'l10',catId:'shopify-admin',     name:'Crear Pedido con Descuento',url:'https://admin.shopify.com/orders/new',       icon:'💰', badge:'Descuento', order:1 },
+    { id:'l11',catId:'shopify-admin',     name:'Órdenes Shopify · NetSuite',url:'https://admin.shopify.com/orders',           icon:'🔗', badge:'Órdenes',   order:2 },
+    { id:'l12',catId:'redirections',      name:'Gestionar Redirecciones',   url:'https://admin.shopify.com/redirects',        icon:'🌐', badge:'URL',       order:0 }
+  ]
+};
+
+let appData = { categories:[], links:[] };
+
+function initData() {
+  try {
+    const saved = localStorage.getItem(DATA_KEY);
+    appData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+  } catch { appData = JSON.parse(JSON.stringify(DEFAULT_DATA)); }
+  populateCategorySelects();
+}
+
+function saveData() {
+  localStorage.setItem(DATA_KEY, JSON.stringify(appData));
+}
+
+function uid() { return 'id' + Date.now() + Math.random().toString(36).slice(2,7); }
+
+/* ─────────────────────────────────────────
+   LINKS RENDERING
+───────────────────────────────────────── */
+let selIcon = ICONS[0];
+let editingLinkId = null;
+let deletingLinkId = null;
+let movingLinkId = null;
+let draggingCard = null;
+
+function renderLinks() {
+  const q    = document.getElementById('searchInput').value.toLowerCase();
+  const catF = document.getElementById('filterCat').value;
+  const cont = document.getElementById('linksContainer');
+  cont.innerHTML = '';
+
+  appData.categories.forEach(cat => {
+    let links = appData.links
+      .filter(l => l.catId === cat.id)
+      .filter(l => !q || l.name.toLowerCase().includes(q) || l.badge.toLowerCase().includes(q))
+      .filter(l => !catF || l.catId === catF)
+      .sort((a,b) => a.order - b.order);
+
+    if (catF && catF !== cat.id) return;
+    if (q && links.length === 0) return;
+
+    const sec = document.createElement('div');
+    sec.className = 'cat-section';
+    sec.dataset.catId = cat.id;
+
+    sec.innerHTML = `
+      <div class="cat-header-row">
+        <div class="cat-section-name">${cat.name}</div>
+        <div class="cat-section-actions">
+          <button class="cat-edit-btn" onclick="openAddLinkModalForCat('${cat.id}')">＋ Añadir</button>
+          <button class="cat-edit-btn" onclick="openRenameCat('${cat.id}')">✏ Renombrar</button>
+          ${cat.id !== 'custom' && cat.id.startsWith('cat-') || cat.id === 'custom' ? `<button class="cat-edit-btn danger" onclick="deleteCat('${cat.id}')">✕ Eliminar</button>` : ''}
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-${cat.id}" data-cat-id="${cat.id}">
+        ${links.length === 0 ? `<div class="empty-cat">Sin accesos en esta categoría. <button style="background:none;border:none;color:var(--blue);cursor:pointer;font-weight:600;font-family:inherit" onclick="openAddLinkModalForCat('${cat.id}')">Añadir uno →</button></div>` : ''}
+      </div>
+    `;
+    cont.appendChild(sec);
+
+    const grid = document.getElementById(`grid-${cat.id}`);
+
+    links.forEach(link => {
+      const card = createCard(link, cat.id);
+      grid.appendChild(card);
+    });
+
+    // Drop zone events for the grid
+    grid.addEventListener('dragover', e => { e.preventDefault(); });
+    grid.addEventListener('drop', e => {
+      e.preventDefault();
+      if (!draggingCard) return;
+      const fromCatId = draggingCard.dataset.catId;
+      const linkId    = draggingCard.dataset.linkId;
+      const toCatId   = cat.id;
+      if (fromCatId !== toCatId) {
+        const link = appData.links.find(l => l.id === linkId);
+        if (link) {
+          link.catId = toCatId;
+          link.order = appData.links.filter(l => l.catId === toCatId).length;
+          saveData();
+          showToast(`"${link.name}" movido a ${cat.name}`, 'success');
+          renderLinks();
+        }
+      }
+    });
+  });
+}
+
+function createCard(link, catId) {
+  const card = document.createElement('div');
+  card.className = 'card-item';
+  card.dataset.linkId = link.id;
+  card.dataset.catId  = catId;
+  card.draggable      = true;
+
+  card.innerHTML = `
+    <div class="card-icon-line">
+      <div class="card-icon">${link.icon}</div>
+      <div class="card-actions-hover">
+        <button class="card-mini-btn" title="Editar" onclick="openEditLinkModal('${link.id}',event)">✏</button>
+        <button class="card-mini-btn" title="Mover" onclick="openMoveModal('${link.id}',event)">↕</button>
+        <button class="card-mini-btn del" title="Eliminar" onclick="openDeleteModal('${link.id}',event)">✕</button>
+      </div>
+    </div>
+    <div class="card-name">${link.name}</div>
+    <div class="card-badge">${link.badge}</div>
+    <div class="card-drag-handle" title="Arrastrar">⣿</div>
+  `;
+
+  // Open link on click (but not on buttons)
+  card.addEventListener('click', e => {
+    if (e.target.closest('.card-actions-hover')) return;
+    window.open(link.url, '_blank', 'noopener');
+  });
+
+  // Drag & drop
+  card.addEventListener('dragstart', e => {
+    draggingCard = card;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+    document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    draggingCard = null;
+  });
+  card.addEventListener('dragover', e => {
+    e.preventDefault();
+    if (draggingCard && draggingCard !== card && draggingCard.dataset.catId === catId) {
+      card.classList.add('drag-over');
+    }
+  });
+  card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+  card.addEventListener('drop', e => {
+    e.preventDefault();
+    card.classList.remove('drag-over');
+    if (!draggingCard || draggingCard === card) return;
+    const fromId = draggingCard.dataset.linkId;
+    const toId   = link.id;
+    if (fromId === toId) return;
+    // Reorder within same category
+    const fromLink = appData.links.find(l => l.id === fromId);
+    const toLink   = appData.links.find(l => l.id === toId);
+    if (fromLink && toLink && fromLink.catId === toLink.catId) {
+      const tmp      = fromLink.order;
+      fromLink.order = toLink.order;
+      toLink.order   = tmp;
+      saveData();
+      renderLinks();
+    }
+  });
+
+  return card;
+}
+
+function filterLinks() { renderLinks(); }
+
+/* ─────────────────────────────────────────
+   CATEGORY SELECTS
+───────────────────────────────────────── */
+function populateCategorySelects() {
+  ['filterCat','lmCategory','moveCatSelect'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const prev = el.value;
+    el.innerHTML = id === 'filterCat' ? '<option value="">Todas las categorías</option>' : '';
+    appData.categories.forEach(cat => {
+      const o = document.createElement('option');
+      o.value       = cat.id;
+      o.textContent = cat.name;
+      el.appendChild(o);
+    });
+    if (prev) el.value = prev;
+  });
+}
+
+/* ─────────────────────────────────────────
+   ADD/EDIT LINK MODAL
+───────────────────────────────────────── */
+function buildIconPicker() {
+  const grid = document.getElementById('iconPickerGrid');
+  grid.innerHTML = ICONS.map(ic =>
+    `<div class="icon-pick${ic===selIcon?' sel':''}" onclick="pickIcon('${ic}',this)">${ic}</div>`
+  ).join('');
+}
+
+function pickIcon(ic, el) {
+  selIcon = ic;
+  document.querySelectorAll('.icon-pick').forEach(e => e.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function openAddLinkModal() {
+  editingLinkId = null;
+  selIcon = ICONS[0];
+  document.getElementById('linkModalTag').textContent   = 'Nuevo acceso';
+  document.getElementById('linkModalTitle').textContent = 'Añadir enlace';
+  document.getElementById('lmConfirmBtn').textContent   = 'Guardar acceso';
+  document.getElementById('lmName').value = '';
+  document.getElementById('lmUrl').value  = '';
+  populateCategorySelects();
+  buildIconPicker();
+  document.getElementById('linkModal').classList.add('open');
+  setTimeout(() => document.getElementById('lmName').focus(), 80);
+}
+
+function openAddLinkModalForCat(catId) {
+  openAddLinkModal();
+  document.getElementById('lmCategory').value = catId;
+}
+
+function openEditLinkModal(linkId, e) {
+  e && e.stopPropagation();
+  const link = appData.links.find(l => l.id === linkId);
+  if (!link) return;
+  editingLinkId = linkId;
+  selIcon = link.icon;
+  document.getElementById('linkModalTag').textContent   = 'Editar acceso';
+  document.getElementById('linkModalTitle').textContent = 'Modificar enlace';
+  document.getElementById('lmConfirmBtn').textContent   = 'Guardar cambios';
+  document.getElementById('lmName').value = link.name;
+  document.getElementById('lmUrl').value  = link.url;
+  populateCategorySelects();
+  document.getElementById('lmCategory').value = link.catId;
+  buildIconPicker();
+  document.getElementById('linkModal').classList.add('open');
+}
+
+function closeLinkModal() { document.getElementById('linkModal').classList.remove('open'); }
+function closeLinkModalBg(e) { if (e.target === document.getElementById('linkModal')) closeLinkModal(); }
+
+function saveLinkModal() {
+  const name  = document.getElementById('lmName').value.trim();
+  const url   = document.getElementById('lmUrl').value.trim();
+  const catId = document.getElementById('lmCategory').value;
+  if (!name) { document.getElementById('lmName').focus(); return; }
+  if (!url)  { document.getElementById('lmUrl').focus();  return; }
+
+  if (editingLinkId) {
+    const link = appData.links.find(l => l.id === editingLinkId);
+    if (link) { link.name = name; link.url = url; link.catId = catId; link.icon = selIcon; link.badge = catId === 'custom' ? 'Personalizado' : link.badge; }
+    showToast(`"${name}" actualizado`, 'success');
+  } else {
+    const cat = appData.categories.find(c => c.id === catId);
+    appData.links.push({
+      id: uid(), catId, name, url, icon: selIcon,
+      badge: cat ? (cat.id === 'custom' ? 'Personalizado' : cat.name) : 'Acceso',
+      order: appData.links.filter(l => l.catId === catId).length
+    });
+    showToast(`"${name}" añadido`, 'success');
+  }
+  saveData();
+  closeLinkModal();
+  renderLinks();
+}
+
+/* ─────────────────────────────────────────
+   DELETE MODAL
+───────────────────────────────────────── */
+function openDeleteModal(linkId, e) {
+  e && e.stopPropagation();
+  const link = appData.links.find(l => l.id === linkId);
+  if (!link) return;
+  deletingLinkId = linkId;
+  document.getElementById('deleteItemName').textContent = link.name;
+  document.getElementById('deleteModal').classList.add('open');
+}
+
+function closeDeleteModal() { document.getElementById('deleteModal').classList.remove('open'); }
+
+function confirmDelete() {
+  appData.links = appData.links.filter(l => l.id !== deletingLinkId);
+  saveData(); renderLinks(); closeDeleteModal();
+  showToast('Acceso eliminado', 'success');
+}
+
+/* ─────────────────────────────────────────
+   MOVE MODAL
+───────────────────────────────────────── */
+function openMoveModal(linkId, e) {
+  e && e.stopPropagation();
+  const link = appData.links.find(l => l.id === linkId);
+  if (!link) return;
+  movingLinkId = linkId;
+  document.getElementById('moveLinkName').textContent = link.name;
+  populateCategorySelects();
+  document.getElementById('moveCatSelect').value = link.catId;
+  document.getElementById('moveModal').classList.add('open');
+}
+
+function closeMoveModal() { document.getElementById('moveModal').classList.remove('open'); }
+
+function confirmMove() {
+  const link  = appData.links.find(l => l.id === movingLinkId);
+  const catId = document.getElementById('moveCatSelect').value;
+  if (link) {
+    const cat = appData.categories.find(c => c.id === catId);
+    link.catId = catId;
+    link.badge = cat ? cat.name : 'Acceso';
+    link.order = appData.links.filter(l => l.catId === catId).length;
+    saveData(); renderLinks(); closeMoveModal();
+    showToast(`"${link.name}" movido a ${cat ? cat.name : catId}`, 'success');
+  }
+}
+
+/* ─────────────────────────────────────────
+   CATEGORY MANAGEMENT
+───────────────────────────────────────── */
+let editingCatId = null;
+
+function openAddCatModal() {
+  editingCatId = null;
+  document.getElementById('catModalTitle').textContent = 'Nueva categoría';
+  document.getElementById('cmName').value = '';
+  document.getElementById('cmDesc').value = '';
+  document.getElementById('catModal').classList.add('open');
+  setTimeout(() => document.getElementById('cmName').focus(), 80);
+}
+
+function openRenameCat(catId) {
+  const cat = appData.categories.find(c => c.id === catId);
+  if (!cat) return;
+  editingCatId = catId;
+  document.getElementById('catModalTitle').textContent = 'Renombrar categoría';
+  document.getElementById('cmName').value = cat.name;
+  document.getElementById('cmDesc').value = cat.desc || '';
+  document.getElementById('catModal').classList.add('open');
+}
+
+function closeCatModal() { document.getElementById('catModal').classList.remove('open'); }
+
+function saveCatModal() {
+  const name = document.getElementById('cmName').value.trim();
+  const desc = document.getElementById('cmDesc').value.trim();
+  if (!name) { document.getElementById('cmName').focus(); return; }
+
+  if (editingCatId) {
+    const cat = appData.categories.find(c => c.id === editingCatId);
+    if (cat) { cat.name = name; cat.desc = desc; }
+    showToast(`Categoría renombrada a "${name}"`, 'success');
+  } else {
+    appData.categories.push({ id: 'cat-' + uid(), name, desc, order: appData.categories.length });
+    showToast(`Categoría "${name}" creada`, 'success');
+  }
+  saveData(); populateCategorySelects(); closeCatModal(); renderLinks();
+}
+
+function deleteCat(catId) {
+  const cat   = appData.categories.find(c => c.id === catId);
+  const links = appData.links.filter(l => l.catId === catId);
+  if (!confirm(`¿Eliminar la categoría "${cat ? cat.name : catId}"? Los ${links.length} accesos que contiene también se eliminarán.`)) return;
+  appData.categories = appData.categories.filter(c => c.id !== catId);
+  appData.links      = appData.links.filter(l => l.catId !== catId);
+  saveData(); populateCategorySelects(); renderLinks();
+  showToast(`Categoría eliminada`, 'success');
+}
+
+/* ─────────────────────────────────────────
+   CALENDAR
+───────────────────────────────────────── */
+let calDate     = new Date();
+let selectedDay = null;
+
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DAYS_ES   = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+
+function getNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY) || '{}'); } catch { return {}; }
+}
+function saveNotes(notes) { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); }
+
+function initCalendar() {
+  selectedDay = new Date();
+  renderCalendar();
+  renderNotesPanel();
+}
+
+function calNav(dir) {
+  calDate = new Date(calDate.getFullYear(), calDate.getMonth() + dir, 1);
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const y  = calDate.getFullYear();
+  const m  = calDate.getMonth();
+  const notes = getNotes();
+
+  document.getElementById('calTitle').textContent = `${MONTHS_ES[m]} ${y}`;
+
+  const firstDay = new Date(y, m, 1);
+  // Monday-based: 0=Mon … 6=Sun
+  let startDow = firstDay.getDay() - 1;
+  if (startDow < 0) startDow = 6;
+
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  const today       = new Date();
+
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // Prev month padding
+  const prevDays = new Date(y, m, 0).getDate();
+  for (let i = startDow - 1; i >= 0; i--) {
+    const d = document.createElement('div');
+    d.className = 'cal-day other-month';
+    d.textContent = prevDays - i;
+    grid.appendChild(d);
+  }
+
+  // Current month
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d   = document.createElement('div');
+    const key = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const classes = ['cal-day'];
+    if (today.getFullYear()===y && today.getMonth()===m && today.getDate()===day) classes.push('today');
+    if (selectedDay && selectedDay.getFullYear()===y && selectedDay.getMonth()===m && selectedDay.getDate()===day) classes.push('selected');
+    if (notes[key] && notes[key].length) classes.push('has-note');
+    d.className   = classes.join(' ');
+    d.textContent = day;
+    d.onclick     = () => selectDay(y, m, day);
+    grid.appendChild(d);
+  }
+
+  // Next month padding
+  const total   = startDow + daysInMonth;
+  const remaining = (7 - (total % 7)) % 7;
+  for (let i = 1; i <= remaining; i++) {
+    const d = document.createElement('div');
+    d.className   = 'cal-day other-month';
+    d.textContent = i;
+    grid.appendChild(d);
+  }
+}
+
+function selectDay(y, m, day) {
+  selectedDay = new Date(y, m, day);
+  renderCalendar();
+  renderNotesPanel();
+}
+
+function renderNotesPanel() {
+  if (!selectedDay) return;
+  const y   = selectedDay.getFullYear();
+  const mo  = selectedDay.getMonth();
+  const day = selectedDay.getDate();
+  const key = `${y}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+  const dow = DAYS_ES[((selectedDay.getDay()+6)%7)];
+  const mes = MONTHS_ES[mo];
+
+  document.getElementById('selectedDateLabel').textContent = `${dow}, ${day} de ${mes} de ${y}`;
+
+  const notes = getNotes();
+  const list  = notes[key] || [];
+  const nl    = document.getElementById('notesList');
+  nl.innerHTML = '';
+
+  if (!list.length) {
+    nl.innerHTML = `<div class="no-notes">Sin notas para este día.<br>Escribe una arriba y guárdala.</div>`;
+    return;
+  }
+  list.forEach((note, idx) => {
+    const el   = document.createElement('div');
+    el.className = 'note-entry';
+    el.innerHTML = `
+      <div class="note-text">${escapeHtml(note)}</div>
+      <button class="note-del" title="Eliminar nota" onclick="deleteNote('${key}',${idx})">✕</button>
+    `;
+    nl.appendChild(el);
+  });
+}
+
+function saveNote() {
+  if (!selectedDay) return;
+  const text = document.getElementById('noteInput').value.trim();
+  if (!text) return;
+  const y  = selectedDay.getFullYear();
+  const mo = selectedDay.getMonth();
+  const d  = selectedDay.getDate();
+  const key = `${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  const notes = getNotes();
+  if (!notes[key]) notes[key] = [];
+  notes[key].push(text);
+  saveNotes(notes);
+  document.getElementById('noteInput').value = '';
+  renderNotesPanel();
+  renderCalendar();
+  showToast('Nota guardada', 'success');
+}
+
+function deleteNote(key, idx) {
+  const notes = getNotes();
+  if (notes[key]) {
+    notes[key].splice(idx, 1);
+    if (!notes[key].length) delete notes[key];
+    saveNotes(notes);
+    renderNotesPanel();
+    renderCalendar();
+    showToast('Nota eliminada');
+  }
+}
+
+/* ─────────────────────────────────────────
+   TO-DO LIST
+───────────────────────────────────────── */
+let todos       = [];
+let todoFilter  = 'all';
+
+const PRIORITY_LABEL = { high:'Alta', medium:'Media', low:'Baja' };
+
+function loadTodos() {
+  try { todos = JSON.parse(localStorage.getItem(TODO_KEY) || '[]'); } catch { todos = []; }
+}
+
+function saveTodoList() { localStorage.setItem(TODO_KEY, JSON.stringify(todos)); }
+
+function addTodo() {
+  const text = document.getElementById('todoInput').value.trim();
+  if (!text) { document.getElementById('todoInput').focus(); return; }
+  const priority = document.getElementById('todoPriority').value;
+  todos.unshift({ id: uid(), text, priority, done: false, createdAt: Date.now() });
+  saveTodoList();
+  document.getElementById('todoInput').value = '';
+  renderTodos();
+  showToast('Tarea añadida', 'success');
+}
+
+function toggleTodo(id) {
+  const t = todos.find(t => t.id === id);
+  if (t) { t.done = !t.done; saveTodoList(); renderTodos(); }
+}
+
+function deleteTodo(id) {
+  todos = todos.filter(t => t.id !== id);
+  saveTodoList(); renderTodos();
+  showToast('Tarea eliminada');
+}
+
+function clearCompleted() {
+  const n = todos.filter(t => t.done).length;
+  if (!n) return;
+  if (!confirm(`¿Eliminar ${n} tarea(s) completada(s)?`)) return;
+  todos = todos.filter(t => !t.done);
+  saveTodoList(); renderTodos();
+  showToast(`${n} tarea(s) eliminadas`);
+}
+
+function setTodoFilter(f, el) {
+  todoFilter = f;
+  document.querySelectorAll('.todo-filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderTodos();
+}
+
+function renderTodos() {
+  loadTodos();
+  const list    = document.getElementById('todoList');
+  const pending = todos.filter(t => !t.done).length;
+  const done    = todos.filter(t => t.done).length;
+
+  document.getElementById('todoStats').innerHTML = `<strong>${pending}</strong> pendientes · <strong>${done}</strong> completadas`;
+
+  const badge = document.getElementById('todoCountBadge');
+  if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline'; }
+  else badge.style.display = 'none';
+
+  let filtered = todos;
+  if (todoFilter === 'pending')   filtered = todos.filter(t => !t.done);
+  if (todoFilter === 'completed') filtered = todos.filter(t => t.done);
+  if (todoFilter === 'high')      filtered = todos.filter(t => t.priority === 'high');
+
+  list.innerHTML = '';
+
+  if (!filtered.length) {
+    list.innerHTML = `
+      <div class="todo-empty">
+        <div class="todo-empty-icon">✅</div>
+        <p>${todoFilter === 'completed' ? 'No hay tareas completadas aún.' : 'No hay tareas que mostrar.'}</p>
+      </div>`;
+    return;
+  }
+
+  filtered.forEach(todo => {
+    const el = document.createElement('div');
+    el.className = `todo-item priority-${todo.priority}${todo.done ? ' completed' : ''}`;
+    const date = new Date(todo.createdAt);
+    const dateStr = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+    el.innerHTML = `
+      <div class="todo-check${todo.done ? ' checked' : ''}" onclick="toggleTodo('${todo.id}')">${todo.done ? '✓' : ''}</div>
+      <div class="todo-text-wrap">
+        <div class="todo-text">${escapeHtml(todo.text)}</div>
+        <div class="todo-meta">Añadida el ${dateStr}</div>
+      </div>
+      <div class="todo-priority-badge">${PRIORITY_LABEL[todo.priority] || todo.priority}</div>
+      <button class="todo-del-btn" title="Eliminar" onclick="deleteTodo('${todo.id}')">✕</button>
+    `;
+    list.appendChild(el);
+  });
+}
+
+/* ─────────────────────────────────────────
+   TABS
+───────────────────────────────────────── */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${tab}`));
+  if (tab === 'calendario') { renderCalendar(); renderNotesPanel(); }
+  if (tab === 'tareas') renderTodos();
+}
+
+/* ─────────────────────────────────────────
+   TOAST
+───────────────────────────────────────── */
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  clearTimeout(toastTimer);
+  t.textContent = msg;
+  t.className   = `toast${type ? ' '+type : ''}`;
+  t.classList.add('show');
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ─────────────────────────────────────────
+   UTILS
+───────────────────────────────────────── */
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ─────────────────────────────────────────
+   KEYBOARD SHORTCUTS
+───────────────────────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    ['linkModal','catModal','deleteModal','moveModal'].forEach(id => {
+      document.getElementById(id).classList.remove('open');
+    });
+  }
+  if (e.key === 'Enter' && document.getElementById('loginScreen').style.display !== 'none') {
+    doLogin();
+  }
+});
+
+/* ─────────────────────────────────────────
+   INIT
+───────────────────────────────────────── */
+(function init() {
+  const user = checkSession();
+  if (user) {
+    startApp(user);
+  }
+  // Enter key on login fields
+  ['loginUser','loginPass'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') doLogin();
+    });
+  });
+})();
+</script>
+</body>
+</html>
